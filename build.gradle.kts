@@ -1,4 +1,7 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Msi
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -10,7 +13,7 @@ plugins {
 }
 
 group = "com.skaggsm"
-version = "0.1.0"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -33,6 +36,12 @@ dependencies {
 }
 
 compose.desktop {
+    application {
+        mainClass = "com.skaggsm.compose.MainKt"
+        nativeDistributions {
+            targetFormats(Dmg, Msi, Deb)
+        }
+    }
 }
 
 tasks.withType<DependencyUpdatesTask> {
